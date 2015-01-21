@@ -7,7 +7,7 @@ var data = require('./server/messages.js').data;
 app.use(express.static(path.join(__dirname + '/client')));
 
 //home page redirect to index
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   res.redirect('/index.html');
 });
 

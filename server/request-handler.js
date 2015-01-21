@@ -40,7 +40,7 @@ var requestHandler = function(request, response) {
 
   headers['Content-Type'] = "text/plain";
   var responseMessage = '';
-  if(request.method === 'OPTIONS'){
+  if (request.method === 'OPTIONS') {
 
     var headers = {};
     // IE8 does not allow domains to be specified, just the *
@@ -53,25 +53,25 @@ var requestHandler = function(request, response) {
     response.writeHead(200, headers);
     response.end();
 
-  } else if(request.url === '/'){
+  } else if (request.url === '/') {
 
-    fs.readFile('../client/index.html', function(err, data){
+    fs.readFile('../client/index.html', function(err, data) {
       response.writeHead(200, {'Content-Type': 'text/html', 'Content-Length':data.length});
       response.write(data);
       response.end();
     });
 
-  }else if((request.url.startsWith('/classes/messages') || request.url === '/classes/room1') && request.method === 'GET'){
+  } else if ((request.url.startsWith('/classes/messages') || request.url === '/classes/room1') && request.method === 'GET') {
 
     responseMessage = data;
     headers['Content-Type'] = "application/JSON";
     response.writeHead(statusCode, headers);
     response.end(JSON.stringify(responseMessage));
 
-  } else if((request.url.startsWith('/classes/messages') || request.url === '/classes/room1') && request.method === 'POST'){
+  } else if ((request.url.startsWith('/classes/messages') || request.url === '/classes/room1') && request.method === 'POST') {
 
     var body = '';
-      request.on('data', function(data){
+      request.on('data', function(data) {
       body += data;
     });
 
@@ -90,12 +90,11 @@ var requestHandler = function(request, response) {
   } else {
     console.log(request.url);
     fs.readFile('../client' + request.url, function(err, data) {
-      if(err){
+      if (err) {
         statusCode = 404;
         response.writeHead(statusCode, headers);
         response.end('');
       } else {
-        //check to see the type of file
         response.writeHead(200, {'Content-Type': 'text/css', 'Content-Length':data.length});
         response.write(data);
         response.end();

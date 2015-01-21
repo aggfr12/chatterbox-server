@@ -12,7 +12,7 @@ var message = {
 data.results.push(message);
 var counter = 1;
 
-function Message(username, text){
+function Message(username, text) {
   counter++;
   this.username = username;
   this.text = text;
@@ -25,7 +25,7 @@ var moreAvis = function() {
   data.results.unshift(new Message('Avi', 'Rage'));
 };
 
-data.add = function(username, text){
+data.add = function(username, text) {
   var newMessage = new Message(username, text);
   data.results.unshift(newMessage);
 };

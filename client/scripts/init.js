@@ -19,8 +19,8 @@ var rv = roomViews[''];
 $('#main-msg').empty();
 $('#main-msg').append(rv.el);
 
-
 var renderAll = function() {
+
   var getData;
   getData = {order: '-createdAt', limit: 30}
   if ( rv.collection.roomname !== '' ) {
@@ -39,6 +39,7 @@ var renderAll = function() {
       rv.render();
     }
   });
+
 };
 
 renderAll();
@@ -48,10 +49,5 @@ window.setInterval(renderAll, 1000);
 
 var uF1 = new UserFilters();
 var uFV1 = new UserFiltersView({collection: uF1});
-// uF1.add([
-// {username: 'Dennis'},
-// {username: 'Derek'}
-
-//   ]);
 
 $('#userFiltersContainer').append(uFV1.el);
